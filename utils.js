@@ -7,6 +7,17 @@ module.exports = {
   or: function(items, options) {
     return combineItems('or', items, options);
   },
+  numberOfItems: function(number, singular, plural) {
+    if (isNaN(number)) {
+      return undefined;
+    } else if (number === 0) {
+      return ('no ' + plural);
+    } else if (number === 1) {
+      return ('1 ' + singular);
+    } else {
+      return (number + ' ' + plural);
+    }
+  },
 };
 
 //

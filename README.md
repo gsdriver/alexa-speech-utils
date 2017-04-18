@@ -49,6 +49,12 @@ will return the string
 milk, cream, or honey
 ```
 
+`numberOfItems` takes a list of number along with singular and plural nouns to return a string
+
+```
+numberOfItems(number, singular, plural)
+```
+
 # Contributing - bug fixes and new functionality
 
 Contributions are welcome!  Please feel free to fork this code and submit pull requests, for bug fixes or feature enhancements.
