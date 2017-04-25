@@ -3,6 +3,18 @@ Nodejs module that provides helper functions for generating text or SSML respons
 Designed for use with Alexa or other speech output devices.  Contributions are welcome - if you don't find
 a utility function that you want - add it!
 
+# Loading module
+
+When loading the module, you can pass in an options structure (optional) that specifies how the module should
+run.  Currently the only supported parameter is "speakTag" which will include SSML tags around the response.
+
+```
+const alexautils = require('alexa-speech-utils');
+const utils = alexautils({speakTag: true});
+```
+
+This will cause output to be returned wrapped with <speak> tags
+
 # Available functions
 
 `and` takes a list of items and combines them with "and"
@@ -23,7 +35,6 @@ The options structure is composed of the following fields:
 ```
 {
   pause - An amount of time to pause between each item - if specified, the returned string will be in SSML format
-  ssmltag - If specified, the return value will be wrapped in <speak> tags
 }
 ```
 

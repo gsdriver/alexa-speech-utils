@@ -1,30 +1,45 @@
 'use strict';
 
-module.exports = {
-  and: function(items, options) {
-    return combineItems('and', items, options);
-  },
-  or: function(items, options) {
-    return combineItems('or', items, options);
-  },
-  numberOfItems: function(number, singular, plural) {
-    if (isNaN(number)) {
-      return undefined;
-    } else if (number === 0) {
-      return ('no ' + plural);
-    } else if (number === 1) {
-      return ('1 ' + singular);
-    } else {
-      return (number + ' ' + plural);
-    }
-  },
+const utils = (options) => {
+  let useSpeakTag;
+
+  if (options && options.speakTag) {
+    useSpeakTag = options.speakTag;
+  }
+
+  return {
+    and: function(items, options) {
+      return combineItems('and', items, options, useSpeakTag);
+    },
+    or: function(items, options) {
+      return combineItems('or', items, options, useSpeakTag);
+    },
+    numberOfItems: function(number, singular, plural) {
+      let items;
+
+      if (isNaN(number)) {
+        return undefined;
+      } else if (number === 0) {
+        items = ('no ' + plural);
+      } else if (number === 1) {
+        items = ('1 ' + singular);
+      } else {
+        items = (number + ' ' + plural);
+      }
+
+      if (useSpeakTag) {
+        items = '<speak>' + items + '</speak>';
+      }
+      return items;
+    },
+  };
 };
 
 //
 // Internal functions
 //
 
-function combineItems(conjunction, items, options) {
+function combineItems(conjunction, items, options, useSpeakTag) {
   let result = '';
   let i;
   const len = (Array.isArray(items) ? items.length : 0);
@@ -52,9 +67,11 @@ function combineItems(conjunction, items, options) {
   }
 
   // If they asked for speak tags, add them
-  if (options && options.ssmltag) {
+  if (useSpeakTag) {
     result = '<speak>' + result + '</speak>';
   }
 
   return result;
 }
+
+module.exports = utils;
