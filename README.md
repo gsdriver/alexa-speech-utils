@@ -41,13 +41,13 @@ The options structure is composed of the following fields:
 Example:
 
 ```
-and(['milk', 'cream', 'honey'], {pause:'1s', ssmltag;true});
+and(['milk', 'cream', 'honey'], {pause:'1s'});
 ```
 
 will return the string
 
 ```
-<speak>milk <break time='1s'/> cream <break time='1s'/> and honey</speak>
+milk <break time='1s'/> cream <break time='1s'/> and honey
 ```
 
 ```
@@ -64,6 +64,50 @@ milk, cream, or honey
 
 ```
 numberOfItems(number, singular, plural)
+```
+
+Example:
+
+```
+numberOfItems(0, 'dog', 'dogs');
+```
+
+will return the string
+
+```
+no dogs
+```
+
+`relativeDate` takes a date and formats it relative to the current date, using today, yesterday,
+tomorrow, and only mentioning the year if it differs from the current year.  You can optionally
+include the time as well.
+
+```
+relativeDate(date, options)
+```
+
+The options structure is composed of the following fields:
+
+```
+{
+  includeTime - If set, hours and minutes will be included in the response
+}
+```
+
+Example:
+
+```
+const now = Date.now();
+const date = new Date(now);
+date.setDate(date.getDate() - 1);
+
+relativeDate(date);
+```
+
+will return the string
+
+```
+yesterday
 ```
 
 # Contributing - bug fixes and new functionality

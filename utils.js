@@ -32,6 +32,49 @@ const utils = (options) => {
       }
       return items;
     },
+    relativeDate: function(date, options) {
+      const now = new Date();
+      const messageDate = new Date(date);
+      let result;
+
+      if (isNaN(messageDate)) {
+        return 'Invalid date';
+      }
+
+      if ((now.getMonth() == messageDate.getMonth())
+        && (now.getDate() == messageDate.getDate())) {
+        result = 'today';
+      } else {
+        // Try yesterday
+        now.setDate(now.getDate() - 1);
+        if ((now.getMonth() == messageDate.getMonth())
+          && (now.getDate() == messageDate.getDate())) {
+          result = 'yesterday';
+        } else {
+          // Try tomorrow
+          now.setDate(now.getDate() + 2);
+          if ((now.getMonth() == messageDate.getMonth())
+            && (now.getDate() == messageDate.getDate())) {
+            result = 'tomorrow';
+          } else if (now.getYear() == messageDate.getYear()) {
+            // Read the month and day
+            result = messageDate.toLocaleDateString([], {month: 'long', day: '2-digit'});
+          } else {
+            // Read the whole thing - month, day and year
+            result = messageDate.toLocaleDateString([], {month: 'long', day: '2-digit', year: 'numeric'});
+          }
+        }
+      }
+
+      // And the time (hour and minute) if requested
+      if (options && options.includeTime) {
+        result += (' at ' + messageDate.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'}));
+      }
+      if (useSpeakTag) {
+        result = '<speak>' + result + '</speak>';
+      }
+      return result;
+    },
   };
 };
 
