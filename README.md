@@ -16,6 +16,8 @@ const utils = alexautils({speakTag: true});
 This will cause output to be returned wrapped with <speak> tags
 
 # Available functions
+## and
+## or
 
 `and` takes a list of items and combines them with "and"
 `or` takes a list of items and combines them with "or"
@@ -34,7 +36,7 @@ The options structure is composed of the following fields:
 
 ```
 {
-  pause - An amount of time to pause between each item - if specified, the returned string will be in SSML format
+  pause - Amount of time to pause between each item - if specified, the returned string will be in SSML format
 }
 ```
 
@@ -59,6 +61,7 @@ will return the string
 ```
 milk, cream, or honey
 ```
+## numberOfItems
 
 `numberOfItems` takes a list of number along with singular and plural nouns to return a string
 
@@ -77,6 +80,7 @@ will return the string
 ```
 no dogs
 ```
+## relativeDate
 
 `relativeDate` takes a date and formats it relative to the current date, using today, yesterday,
 tomorrow, and only mentioning the year if it differs from the current year.  You can optionally
