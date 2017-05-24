@@ -29,6 +29,19 @@ describe('numberOfItems', () => {
   });
 });
 
+// formatCurrency
+describe('formatCurrency', () => {
+  it('should default to US dollars', () => {
+    assert.equal(utils().formatCurrency(4), '$4');
+  });
+  it('should return pounds for UK', () => {
+    assert.equal(utils().formatCurrency(5.5, 'en-GB'), '£5.5');
+  });
+  it('should return euro for DE', () => {
+    assert.equal(utils().formatCurrency(2, 'de-DE'), '€2');
+  });
+});
+
 // relativeDate
 describe('relativeDate', () => {
   const now = Date.now();

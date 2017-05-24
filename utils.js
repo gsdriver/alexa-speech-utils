@@ -14,6 +14,20 @@ const utils = (options) => {
     or: function(items, options) {
       return combineItems('or', items, options, useSpeakTag);
     },
+    formatCurrency : function(amount, locale) {
+      const localeUpper = (locale) ? locale.toUpperCase() : 'EN-US';
+
+      if (isNaN(amount)) {
+        return null;
+      } else if (localeUpper === 'EN-GB') {
+        return ('£' + amount)
+      } else if (localeUpper === 'DE-DE') {
+        return ('€' + amount);
+      } else {
+        // Default to US English
+        return ('$' + amount);
+      }
+    },
     numberOfItems: function(number, singular, plural) {
       let items;
 
