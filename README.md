@@ -114,6 +114,27 @@ will return the string
 yesterday
 ```
 
+## formatCurrency
+
+`amount` numerical amount to turn into a currency
+`locale` locale to determine the appropriate currency symbol - currently supports en-US, en-GB, and de-DE.  Default is en-US
+
+```
+formatCurrency(amount, locale)
+```
+
+Example:
+
+```
+formatCurrency(100, 'en-GB');
+```
+
+will return the string
+
+```
+£100
+```
+
 # Contributing - bug fixes and new functionality
 
 Contributions are welcome!  Please feel free to fork this code and submit pull requests, for bug fixes or feature enhancements.
