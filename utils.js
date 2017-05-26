@@ -19,13 +19,23 @@ const utils = (options) => {
 
       if (isNaN(amount)) {
         return null;
-      } else if (localeUpper === 'EN-GB') {
-        return ('£' + amount);
-      } else if (localeUpper === 'DE-DE') {
-        return ('€' + amount);
       } else {
-        // Default to US English
-        return ('$' + amount);
+        let result;
+        const roundedAmount = Math.round(amount * 100) / 100;
+
+        if (localeUpper === 'EN-GB') {
+          result = ('£' + roundedAmount);
+        } else if (localeUpper === 'DE-DE') {
+          result = ('€' + roundedAmount);
+        } else {
+          // Default to US English
+          result = ('$' + roundedAmount);
+        }
+
+        if (useSpeakTag) {
+          result = '<speak>' + result + '</speak>';
+        }
+        return result;
       }
     },
     numberOfItems: function(number, singular, plural) {

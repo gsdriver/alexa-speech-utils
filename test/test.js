@@ -38,7 +38,7 @@ describe('formatCurrency', () => {
     assert.equal(utils().formatCurrency(5.5, 'en-GB'), '£5.5');
   });
   it('should return euro for DE', () => {
-    assert.equal(utils().formatCurrency(2, 'de-DE'), '€2');
+    assert.equal(utils({speakTag: true}).formatCurrency(2.006, 'de-DE'), '<speak>€2.01</speak>');
   });
 });
 
