@@ -9,10 +9,28 @@ const utils = (options) => {
 
   return {
     and: function(items, options) {
-      return combineItems('and', items, options, useSpeakTag);
+      let andText = 'and';
+
+      if (options && options.locale) {
+        // We also support German - default to English
+        if (options.locale.toUpperCase() == 'DE-DE') {
+          andText = 'und';
+        }
+      }
+
+      return combineItems(andText, items, options, useSpeakTag);
     },
     or: function(items, options) {
-      return combineItems('or', items, options, useSpeakTag);
+      let orText = 'or';
+
+      if (options && options.locale) {
+        // We also support German - default to English
+        if (options.locale.toUpperCase() == 'DE-DE') {
+          orText = 'oder';
+        }
+      }
+
+      return combineItems(orText, items, options, useSpeakTag);
     },
     formatCurrency: function(amount, locale) {
       const localeUpper = (locale) ? locale.toUpperCase() : 'EN-US';

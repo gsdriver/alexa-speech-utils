@@ -37,6 +37,7 @@ The options structure is composed of the following fields:
 ```
 {
   pause - Amount of time to pause between each item - if specified, the returned string will be in SSML format
+  locale - locale to use - supports en-US, en-GB, and de-DE
 }
 ```
 

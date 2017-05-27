@@ -14,6 +14,13 @@ describe('and and or', () => {
     assert.equal(utils({speakTag: true}).and(['one', 'two', 'three', 'four']),
       '<speak>one, two, three, and four</speak>');
   });
+  it('should work with German', () => {
+    assert.equal(utils().and(['foo', 'bar'], {locale: 'de-DE'}), 'foo und bar');
+  });
+  it('should insert pauses in German', () => {
+    assert.equal(utils().or(['beg', 'borrow', 'steal'], {pause: '1s', locale: 'de-DE'}),
+      'beg <break time=\'1s\'/> borrow <break time=\'1s\'/> oder steal');
+  });
 });
 
 // numberOfItems
