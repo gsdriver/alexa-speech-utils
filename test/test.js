@@ -14,6 +14,14 @@ describe('and and or', () => {
     assert.equal(utils({speakTag: true}).and(['one', 'two', 'three', 'four']),
       '<speak>one, two, three, and four</speak>');
   });
+  it('should include pre separators', () => {
+    assert.equal(utils().and(['one', 'two', 'three', 'four'], {preseparator: '<audio src=\"test.mp3\"/>'}),
+      'one<audio src=\"test.mp3\"/>two<audio src=\"test.mp3\"/>three<audio src=\"test.mp3\"/>and four');
+  });
+  it('should include post separators', () => {
+    assert.equal(utils().and(['one', 'two', 'three', 'four'], {postseparator: '<audio src=\"test.mp3\"/>'}),
+      'one<audio src=\"test.mp3\"/>two<audio src=\"test.mp3\"/>three and<audio src=\"test.mp3\"/>four');
+  });
   it('should work with German', () => {
     assert.equal(utils().and(['foo', 'bar'], {locale: 'de-DE'}), 'foo und bar');
   });

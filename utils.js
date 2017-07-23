@@ -129,9 +129,15 @@ function combineItems(conjunction, items, options, useSpeakTag) {
   let i;
   const len = (Array.isArray(items) ? items.length : 0);
   let separator;
+  let separatorBeforeConjunction = true;
 
   if (options && options.pause) {
     separator = ' <break time=\'' + options.pause + '\'/> ';
+  } else if (options && options.preseparator) {
+    separator = options.preseparator;
+  } else if (options && options.postseparator) {
+    separator = options.postseparator;
+    separatorBeforeConjunction = false;
   } else {
     separator = ', ';
   }
@@ -143,9 +149,16 @@ function combineItems(conjunction, items, options, useSpeakTag) {
     for (i = 0; i < len; i++) {
         result += items[i];
         if (i < len - 1) {
-          result += separator;
-          if (i == (len - 2)) {
-            result += (conjunction + ' ');
+          if (separatorBeforeConjunction) {
+            result += separator;
+            if (i == (len - 2)) {
+              result += (conjunction + ' ');
+            }
+          } else {
+            if (i == (len - 2)) {
+              result += (' ' + conjunction);
+            }
+            result += separator;
           }
         }
       }
