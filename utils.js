@@ -75,7 +75,7 @@ const utils = (options) => {
       return items;
     },
     relativeDate: function(date, options) {
-      const now = new Date();
+      const now = ((options && options.reference) ? new Date(options.reference) : new Date());
       const messageDate = new Date(date);
       let result;
 
