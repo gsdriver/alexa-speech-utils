@@ -1,6 +1,6 @@
 {
   "name": "alexa-speech-utils",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Helper functions for building speech responses",
   "main": "utils.js",
   "directories": {
